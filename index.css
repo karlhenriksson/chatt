@@ -128,7 +128,7 @@ body {
   border-radius: 3px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   #mainView {
     flex-direction: row;
   }

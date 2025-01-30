@@ -1,8 +1,6 @@
 "use strict";
 /**
  * Manages the chat client's frontend.
- *
- * TODO: Make a mobile version - Move the profile/channel selection to the top, make channel selection collapsible. Make sure that scrolling isn't possible when a keyboard is up
  */
 const apiURL =
   "https://script.google.com/macros/s/AKfycbyLRxXHo2kWTYFGI47gCNI8EDkpmB6axFVeJKShtDYJm5fC28CPDwaTna0S_gA9Srk/exec";
@@ -60,8 +58,6 @@ function openChat(name) {
   fetch(`${apiURL}?action=getMessages&chat=${name}&number=50`)
     .then((result) => result.json())
     .then((json) => {
-      console.log(json);
-
       // Populate the message view
       populateMessageList(json.messages);
 
@@ -80,8 +76,6 @@ function sendMessage() {
 
   // Replace the \n:s with &e& in order to avoid problems with sending line breaks
   message = message.replaceAll("\n", "%e%");
-
-  // TODO: If the username or message isn't set, show a warning and run a red emphasis animation on the right element
 
   // If no username is set, send a message
   if (!username) {
@@ -157,6 +151,12 @@ function populateMessageList(list) {
       })
     );
   }
+
+  // Scroll to bottom of message list
+  setTimeout(() => {
+    const lastMessage = messages.children[messages.childElementCount - 1];
+    lastMessage.scrollIntoView(false);
+  });
 }
 
 // Construct a message, give back the HTML object
@@ -181,7 +181,7 @@ function sendWarningAlert(text) {
   setTimeout(() => (obj.style.bottom = "-20%"), 800 + 50 * text.length);
 }
 
-// This function runs every 10s to reload all the messages for the open chat
+// Reload all messages for this chat. TODO: Create a button for this
 let skipReloadResult = false;
 function updateCurrentChat() {
   console.log("Updating chat");
@@ -197,9 +197,7 @@ function updateCurrentChat() {
         populateMessageList(json.messages);
       });
   }
-  setTimeout(updateCurrentChat, 10000);
 }
-setTimeout(updateCurrentChat, 10000);
 
 // On page load, refresh the channel view
 reloadChats();
