@@ -1,0 +1,162 @@
+
+* {
+  font-family: 'Courier New', Courier, monospace;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+
+  height: 100vh;
+}
+
+#mainView {
+  display: flex;
+
+  height: 100%;
+}
+
+#sidebar {
+  flex: 1;
+  min-width: 150px;
+
+  border-right: 1px black solid;
+  box-shadow: 0px 0px 5px 2.5px black;
+
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+}
+
+#usernameInput {
+  height: 30px;
+  width: 100%;
+}
+
+#chatList {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  overflow-y: auto;
+}
+
+#chatList > div {
+  width: 100%;
+  padding: 5px;
+
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: lightgray;
+  color: black;
+
+  user-select: none;
+  transition: .3s;
+}
+#chatList > div:hover {
+  background-color: black;
+  color: white;
+}
+
+#chatListLoading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 30px;
+}
+
+#chatView {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#messageList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+#messageList > div {
+  padding-bottom: 10px;
+}
+
+#messagesLoading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+#messageComposer {
+  display: flex;
+  padding: 10px;
+}
+
+#newMessage {
+  flex: 1;
+  resize: none;
+}
+
+#warningToast {
+  position: absolute;
+  left: 50%;
+  bottom: -20%;
+
+  background-color: red;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+
+  transform: translate(-50%, -50%);
+  transition-property: bottom;
+  transition-duration: 0.3s;
+}
+
+.inputField {
+  border: 1px black solid;
+  border-radius: 3px;
+}
+
+/* ANIMATIONS */
+
+.redBlink {
+  animation-name: redBlink;
+  animation-duration: 1s;
+}
+
+@keyframes redBlink {
+  50% {
+    border-color: red;
+    background-color: #f66;
+  }
+}
+
+.loadingDot {
+  width: 25px;
+  height: 25px;
+  background-color: black;
+  border-radius: 50%;
+
+  position: relative;
+
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  0% { left: -50px; scale: 90% 110%; }
+  25% { scale: 120% 80%; }
+  50% { left: 50px; scale: 90% 110%; }
+  75% { scale: 100% 50%; }
+  100% { left: -50px; scale: 90% 110%; }
+}

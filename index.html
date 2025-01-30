@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="faviconLight.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="faviconLight.svg"
+      type="image/x-icon"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      href="faviconDark.svg"
+      type="image/x-icon"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <title>Chat testing</title>
+  </head>
+  <body>
+    <div id="mainView">
+      <!-- Sidebar for displaying chats -->
+      <div id="sidebar">
+        <h2>Profil</h2>
+        <input
+          id="usernameInput"
+          type="string"
+          placeholder="Användarnamn"
+          class="inputField"
+        />
+        <h2>
+          Chattar <input type="button" value="Reload" onclick="reloadChats()" />
+        </h2>
+        <div id="chatList"></div>
+        <div id="chatListLoading">
+          Laddar chattar...
+          <div class="loadingDot"></div>
+        </div>
+      </div>
+
+      <!-- Main chat view -->
+      <div id="chatView">
+        <!-- Message container -->
+        <div id="messageList"></div>
+
+        <!-- Loading screen -->
+        <div id="messagesLoading" style="display: none">
+          Laddar meddelanden...
+          <div class="loadingDot"></div>
+        </div>
+
+        <!-- Message composition -->
+        <div id="messageComposer">
+          <textarea id="newMessage" rows="3" class="inputField"></textarea>
+          <input
+            id="sendMessageButton"
+            type="button"
+            value="SKICKA"
+            class="redBlink"
+            onclick="sendMessage()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- A warning toast -->
+    <div id="warningToast">Test</div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
