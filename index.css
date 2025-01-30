@@ -14,16 +14,14 @@ body {
 
 #mainView {
   display: flex;
+  flex-direction: column;
 
   height: 100%;
 }
 
 #sidebar {
-  flex: 1;
-  min-width: 150px;
-
-  border-right: 1px black solid;
-  box-shadow: 0px 0px 5px 2.5px black;
+  border-bottom: 1px black solid;
+  box-shadow: 0px 0px 5px 5px lightgray;
 
   display: flex;
   flex-direction: column;
@@ -78,9 +76,11 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px;
+
+  min-height: 0;
 }
 
-#messageList {
+#messageListWrapper {
   flex: 1;
   overflow-y: auto;
 }
@@ -126,6 +126,23 @@ body {
 .inputField {
   border: 1px black solid;
   border-radius: 3px;
+}
+
+@media only screen and (min-width: 600px) {
+  #mainView {
+    flex-direction: row;
+  }
+
+  #sidebar {
+    min-width: 150px;
+    flex: 1;
+    border-bottom: none;
+    border-right: 1px solid black;
+  }
+
+  #toggleChatsButton {
+    display: none;
+  }
 }
 
 /* ANIMATIONS */

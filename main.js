@@ -1,11 +1,24 @@
 "use strict";
 /**
  * Manages the chat client's frontend.
+ *
+ * TODO: Make a mobile version - Move the profile/channel selection to the top, make channel selection collapsible. Make sure that scrolling isn't possible when a keyboard is up
  */
 const apiURL =
   "https://script.google.com/macros/s/AKfycbyLRxXHo2kWTYFGI47gCNI8EDkpmB6axFVeJKShtDYJm5fC28CPDwaTna0S_gA9Srk/exec";
 
 let openChatName;
+
+// Toggle chat list
+function toggleChatList() {
+  const obj = document.getElementById("chatListWrapper");
+
+  console.log(obj.style.display);
+
+  const isOpen = obj.style.display == "block";
+
+  obj.style.display = isOpen ? "none" : "block";
+}
 
 // Reload the channel view to show all channels
 function reloadChats() {
@@ -66,7 +79,7 @@ function sendMessage() {
   console.log(message);
 
   // Replace the \n:s with &e& in order to avoid problems with sending line breaks
-  message = message.replaceAll("\n", "&e&");
+  message = message.replaceAll("\n", "%e%");
 
   // TODO: If the username or message isn't set, show a warning and run a red emphasis animation on the right element
 
@@ -151,8 +164,8 @@ function constructMessage({ sender, message, date }) {
   // Format time
   const time = date.toISOString().split("T")[0];
 
-  // Replace &e& med ett faktiskt enter
-  message = message.replaceAll("&e&", "\n");
+  // Replace %e% with a line break
+  message = message.replaceAll("%e%", "\n");
 
   // Create and return object
   const obj = document.createElement("div");

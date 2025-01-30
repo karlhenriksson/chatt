@@ -33,27 +33,34 @@
           class="inputField"
         />
         <h2>
-          Chattar <input type="button" value="Reload" onclick="reloadChats()" />
+          Chattar
+          <input
+            id="toggleChatsButton"
+            type="button"
+            value="Visa/göm"
+            onclick="toggleChatList()"
+          />
         </h2>
-        <div id="chatList"></div>
-        <div id="chatListLoading">
-          Laddar chattar...
-          <div class="loadingDot"></div>
+        <div id="chatListWrapper" style="display: block; width: 100%">
+          <div id="chatList"></div>
+          <div id="chatListLoading">
+            Laddar chattar...
+            <div class="loadingDot"></div>
+          </div>
         </div>
       </div>
 
       <!-- Main chat view -->
       <div id="chatView">
-        <!-- Message container -->
-        <div id="messageList"></div>
+        <div id="messageListWrapper">
+          <div id="messageList"></div>
 
-        <!-- Loading screen -->
-        <div id="messagesLoading" style="display: none">
-          Laddar meddelanden...
-          <div class="loadingDot"></div>
+          <div id="messagesLoading" style="display: none">
+            Laddar meddelanden...
+            <div class="loadingDot"></div>
+          </div>
         </div>
 
-        <!-- Message composition -->
         <div id="messageComposer">
           <textarea id="newMessage" rows="3" class="inputField"></textarea>
           <input
